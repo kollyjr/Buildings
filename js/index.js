@@ -1,3 +1,32 @@
+/**
+ * sortBuildings
+ * sort's the buildings array by key, and provided direction
+ * 
+ * @param {*} data array of buildings
+ * @param {*} key key in the object to sort by
+ * @param {*} direction sorting direction asc|desc
+ * @returns array of sorted buildings
+ */
+function sortBuildings(data, key, direction) {
+    data.sort(function (a, b) {
+        if (direction == "asc") {
+            if (a[key] > b[key]) {
+                return 1;
+            }
+
+            return -1;
+        } else {
+            if (a[key] < b[key]) {
+                return 1;
+            }
+
+            return -1;
+        }
+    });
+
+    return data;
+}
+
 document.addEventListener("DOMContentLoaded", (e) => {
 
     /** 
@@ -15,11 +44,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
      * building-card
      * 
      * @props
-     * building: building object containing the building name, address, image url, categories.
-     * 
-     * Note:
-     * The object tag is used to render imageUrls, if the url is dead the img tag inside the object will render
-     * the default image.
+     * building: building object from the building array.
      * */
     Vue.component("building-card",
         {
@@ -39,18 +64,50 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 </div>`
         });
 
+    /** 
+     * select-node
+     * 
+     * @props
+     * name: name of the select.
+     * label: label displayed above the select tag when rendered
+     * options: options to be selected as an object with keys value and name
+     * */
+    Vue.component("select-node",
+        {
+            props: ['name', 'label', 'options'],
+            template: `
+                <div class="sort-container">
+                    <label :for="name">{{label}}</label>
+                    <select :name="name" v-on:change="$emit('sort', $event.target.value)">
+                        <option v-for="option in options" :value="option.value">{{option.name}}</option>
+                    </select>
+                </div>`
+        });
+
     var app = new Vue({
         el: '#app',
         data: {
-            buildings: []
+            buildings: [],
+            sortingOption: [
+                { name: "Name Ascending", value: "name:asc" },
+                { name: "Name Descending", value: "name:desc" }
+            ]
+        },
+        methods: {
+            sort: function (value) {
+                value = value.split(":");
+                let key = value[0];
+                let direction = value[1];
+                this.buildings = sortBuildings(this.buildings, key, direction);
+            }
         }
     });
 
     fetch("https://content.osu.edu/v2/buildings")
         .then(output => output.json())
         .then(output => {
-            app.buildings = output.data.buildings;
-            buildings = output.data.buildings;
+            app.buildings = sortBuildings(output.data.buildings, "name", "asc");
+
         })
         .catch(err => console.error(err));
 })

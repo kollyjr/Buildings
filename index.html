@@ -15,7 +15,12 @@
 <body>
     <div class="container">
         <h1>Buildings</h1>
+
         <div class="content" id="app">
+            <div class="sticky-panel">
+                <select-node name="sort" label="Sort buildings by:" v-bind:options="sortingOption" v-on:sort="sort"></select-node>
+            </div>
+
             <building-card v-for="building in buildings" v-bind:key="building.id" v-bind:building="building">
             </building-card>
         </div>
