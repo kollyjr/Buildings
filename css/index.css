@@ -109,15 +109,6 @@ input, select {
   height: 192px;
 }
 
-.container .content .building-card object {
-  background-color: #f4f4f4;
-}
-
-.container .content .building-card object img {
-  display: block;
-  margin: auto;
-}
-
 .container .content .building-card .tags-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -142,21 +133,45 @@ input, select {
   border-radius: 2px;
 }
 
+/* wide screen (portrait and landscape) ----------- */
+@media only screen and (min-width: 1300px) and (max-width: 2000px) {
+  .building-card {
+    -ms-flex-preferred-size: 20% !important;
+        flex-basis: 20% !important;
+    max-width: calc(20% - 34px) !important;
+  }
+}
+
 /* tablet size (portrait and landscape) ----------- */
-@media only screen and (min-device-width: 667px) and (max-device-width: 1024px) {
+@media only screen and (min-width: 667px) and (max-width: 1024px) {
+  .building-card {
+    -ms-flex-preferred-size: 33.3% !important;
+        flex-basis: 33.3% !important;
+    max-width: calc(33.3% - 34px) !important;
+  }
+}
+
+/* Smartphone size (portrait and landscape) ----------- */
+@media only screen and (min-width: 500px) and (max-width: 667px) {
   .building-card {
     -ms-flex-preferred-size: 50% !important;
         flex-basis: 50% !important;
     max-width: calc(50% - 34px) !important;
   }
+  .building-card img {
+    height: 140px !important;
+  }
 }
 
 /* Smartphone size (portrait and landscape) ----------- */
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+@media only screen and (min-width: 320px) and (max-width: 480px) {
   .building-card {
     -ms-flex-preferred-size: 100% !important;
         flex-basis: 100% !important;
     max-width: calc(100% - 34px) !important;
+  }
+  .building-card img {
+    height: 240px !important;
   }
 }
 /*# sourceMappingURL=index.css.map */
