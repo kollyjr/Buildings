@@ -1,0 +1,83 @@
+html,body
+    width: 99%
+    height: 99%
+    padding: 0px
+    margin: 0px auto
+    background-color: rgb(255, 255, 255)
+
+.container
+    display: flex
+    flex-direction: column
+    height: calc(100% - 32px)
+    width: calc(100% - 16px)
+    padding: 8px
+
+    h1 
+        width: 100%
+
+    .content
+        display: flex
+        flex-wrap: wrap
+        width: 100%
+        height: calc(100% - 28px)
+        overflow-x: hidden
+        overflow-y: auto
+
+        .building-card
+            border: solid 1px rgba(240, 240, 240, 1)
+            border-radius: 4px
+            box-shadow: 0px 0px 2px 0px rgba(240, 240, 240, 1)
+            cursor: pointer
+            display: flex
+            flex-direction: column
+            flex-basis: 25%
+            
+            // 34px - 16px padding, 16px margin, 2px border
+            max-width: calc(25% - 34px)
+            padding: 8px
+            margin: 16px 8px
+
+            &:hover
+                box-shadow: 0px 0px 4px 1px rgba(200, 200, 200, 1)
+            
+            h4
+                margin: 8px 0px
+            p
+                margin: 0px
+
+            img, object
+                height: 192px
+
+            object
+                background-color: rgb(244, 244, 244)
+                img
+                    display: block
+                    margin: auto
+
+            .tags-container
+                display: flex
+                flex-wrap: wrap
+                width: 100%
+
+                .tag
+                    display: flex
+                    flex-direction: column
+                    font-size: 12px
+                    padding: 4px
+                    margin: 4px
+                    background-color: rgb(249, 230, 230)
+                    border-radius: 2px
+
+/* tablet size (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 667px) and (max-device-width : 1024px) 
+    .building-card
+        flex-basis: 50% !important
+        max-width: calc(50% - 34px) !important
+                    
+/* Smartphone size (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) 
+    .building-card
+        flex-basis: 100% !important
+        max-width: calc(100% - 34px) !important
+
+

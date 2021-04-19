@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buildings</title>
+
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="js/index.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Buildings</h1>
+        <div class="content" id="app">
+            <building-card v-for="building in buildings" v-bind:key="building.id" v-bind:building="building">
+            </building-card>
+        </div>
+
+    </div>
+</body>
+
+</html>
