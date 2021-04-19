@@ -2,9 +2,9 @@
  * sortBuildings
  * sort's the buildings array by key, and provided direction
  * 
- * @param {*} data array of buildings
- * @param {*} key key in the object to sort by
- * @param {*} direction sorting direction asc|desc
+ * @param data array of buildings
+ * @param key key in the object to sort by
+ * @param direction sorting direction asc|desc
  * @returns array of sorted buildings
  */
 function sortBuildings(data, key, direction) {
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
      * @props
      * name: name of the select.
      * label: label displayed above the select tag when rendered
-     * options: options to be selected as an object with keys value and name
+     * options: options (as an array of objects with keys value and name) to be selected
      * */
     Vue.component("select-node",
         {
@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
         .then(output => output.json())
         .then(output => {
             app.buildings = sortBuildings(output.data.buildings, "name", "asc");
-
         })
         .catch(err => console.error(err));
 })
